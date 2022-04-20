@@ -5,6 +5,7 @@ import CreatePlaylist from "../../components/CreatePlaylist";
 import { setAccessToken } from "../../reducers/AccountSlice";
 import axios from "axios";
 import { setUserProfile } from "../../reducers/UserProfileSlice";
+import { setListID } from "../../reducers/ListIDSlice";
 
 function HomePage() {
   const [searchResult, setSearchResult] = useState([]);
@@ -43,7 +44,7 @@ function HomePage() {
       },
     }).then( async(res) => {
       const data = await res.data;
-      // console.log('data, :', data);
+      console.log('data, :', data);
       dispatch(setUserProfile(data));
       // return await data
     });
@@ -57,14 +58,15 @@ function HomePage() {
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         .replace("access_token=", "");
-    console.log(token)
+    console.log("test", listID)
+    if(listID){
+      dispatch(setListID(listID));
+    }
     if (token) {
       handleGetUserProfile(token)
       dispatch(setAccessToken(token));
-    //   dispatch(setUserProfile(userProfile));
-    //   console.log(userProfile);
     }
-  }, []);
+  }, [listID]);
 
   return (
     <div>

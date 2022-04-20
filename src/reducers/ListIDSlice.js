@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const ListIDSlice = createSlice({
   name: "listid",
   initialState: {
-    setSearchValue: "",
+    listIDValue: "",
   },
   reducers: {
     setListID: (state, action) => {
-      state.setSliceIDValue = action.payload;
+      state.listIDValue = action.payload;
     },
   },
 });

@@ -6,7 +6,7 @@ function CreatePlaylist() {
   // const [access_token, listID, , , userIDProfile] = useContext(userID);
 
   const access_token = useSelector((state) => state.account.accessToken);
-  const listID = useSelector((state) => state.listid.setListID);
+  const listID = useSelector((state) => state.listid.listIDValue);
   const userIDProfile = useSelector((state) => state.userprofile.setUserProfileValue);
 
   const [openForm, setOpenForm] = useState(false);
@@ -23,9 +23,10 @@ function CreatePlaylist() {
       data: {
         uris: listID.map((item) => `spotify:track:${item}`),
       },
-    });
+    }).then(res=>{console.log(res)})
   };
 
+  console.log(listID);
   const openFormHandler = (e) => {
     e.preventDefault();
     setOpenForm(!openForm);
@@ -92,9 +93,12 @@ function CreatePlaylist() {
       <div>
         {createdPlaylist &&
           createdPlaylist.map((playlist) => (
-            <div>
-              {" "}
-              key={playlist.id} addItem={addItem} playlistName={playlist.name} id={playlist.id}
+            <div className="w-24 h-24 bg-yellow-100">
+              <h3>{playlist.name}</h3>
+              <p>{playlist.description}</p>
+              <button onClick={()=>{
+                addItem(playlist.id)
+              }}>Submit</button>
             </div>
           ))}
       </div>
