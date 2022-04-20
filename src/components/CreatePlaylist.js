@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 function CreatePlaylist() {
   // const [access_token, listID, , , userIDProfile] = useContext(userID);
 
-  const access_token = useSelector((state) => state.account.setAccessToken);
+  const access_token = useSelector((state) => state.account.accessToken);
   const listID = useSelector((state) => state.listid.setListID);
-  const userIDProfile = useSelector((state) => state.userprofile.setUserProfile);
+  const userIDProfile = useSelector((state) => state.userprofile.setUserProfileValue);
 
   const [openForm, setOpenForm] = useState(false);
   const [createdPlaylist, setCreatedPlaylist] = useState([]);
 
+  console.log(userIDProfile.id);
   const addItem = async (id) => {
     await axios({
       method: "POST",
@@ -48,7 +49,7 @@ function CreatePlaylist() {
     e.preventDefault();
     await axios({
       method: "POST",
-      url: `https://api.spotify.com/v1/users/${userIDProfile}/playlists`,
+      url: `https://api.spotify.com/v1/users/${userIDProfile.id}/playlists`,
       headers: {
         Authorization: `Bearer ${access_token}`,
       },

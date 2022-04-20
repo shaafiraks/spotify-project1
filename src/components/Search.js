@@ -20,7 +20,7 @@ function Search({ handleSearch }) {
       >
         Search
       </button>
-      <CreatePlaylist />
+      {/* <CreatePlaylist /> */}
     </div>
   );
 }

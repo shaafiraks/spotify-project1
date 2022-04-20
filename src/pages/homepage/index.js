@@ -1,17 +1,24 @@
-import React, { useState, useCallback, useContext } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Search from "../../components/Search";
 import CreatePlaylist from "../../components/CreatePlaylist";
+import { setAccessToken } from "../../reducers/AccountSlice";
+import axios from "axios";
+import { setUserProfile } from "../../reducers/UserProfileSlice";
 
 function HomePage() {
   const [searchResult, setSearchResult] = useState([]);
   const setSearchValue = useSelector((state) => state.search.setSearchValue);
   const access_token = useSelector((state) => state.account.accessToken);
-  console.log("token", access_token);
+  // console.log("token", access_token);
+
   const [listID, setlistID] = useState([]);
+  const dispatch = useDispatch();
+
   const addID = (id) => {
     setlistID((prevState) => [...prevState, id]);
   };
+
   const deleteID = (id) => {
     setlistID((prevState) => prevState.filter((selectedID) => selectedID !== id));
   };
@@ -26,6 +33,38 @@ function HomePage() {
       .then((res) => res.json())
       .then((res) => setSearchResult(res.tracks.items));
   }, [setSearchValue, access_token]);
+
+  const handleGetUserProfile = async (token) => {
+    await axios({
+      method: "GET",
+      url: "https://api.spotify.com/v1/me",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then( async(res) => {
+      const data = await res.data;
+      // console.log('data, :', data);
+      dispatch(setUserProfile(data));
+      // return await data
+    });
+  };
+
+  useEffect(() => {
+    const token =
+      window.location.hash &&
+      window.location.hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .replace("access_token=", "");
+    console.log(token)
+    if (token) {
+      handleGetUserProfile(token)
+      dispatch(setAccessToken(token));
+    //   dispatch(setUserProfile(userProfile));
+    //   console.log(userProfile);
+    }
+  }, []);
 
   return (
     <div>
@@ -49,7 +88,7 @@ function HomePage() {
           </div>
         );
       })}
-      {/* <CreatePlaylist /> */}
+      <CreatePlaylist />
     </div>
   );
 }

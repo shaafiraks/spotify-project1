@@ -26,33 +26,6 @@ function LoginPage() {
     window.location.href = SPOTIFY_URL;
   };
 
-  const handleGetUserProfile = async (token) => {
-    await axios({
-      method: "GET",
-      url: "https://api.spotify.com/v1/me",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => setuserProfile(res.data));
-  };
-
-  useEffect(() => {
-    const token =
-      window.location.hash &&
-      window.location.hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .replace("access_token=", "");
-    if (token) {
-      console.log(token);
-      handleGetUserProfile(token);
-      dispatch(setAccessToken(token));
-      dispatch(setUserProfile(userProfile));
-      console.log(userProfile);
-    }
-  }, []);
-
   return (
     <div className="App bg-slate-600 bg-cover h-screen">
       <div className="Login flex justify-center justify-items-center">
