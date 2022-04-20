@@ -11,6 +11,7 @@ function CreatePlaylist() {
 
   const [openForm, setOpenForm] = useState(false);
   const [createdPlaylist, setCreatedPlaylist] = useState([]);
+  const [disableButton, setDisableButton] = useState(false);
 
   console.log(userIDProfile.id);
   const addItem = async (id) => {
@@ -23,7 +24,9 @@ function CreatePlaylist() {
       data: {
         uris: listID.map((item) => `spotify:track:${item}`),
       },
-    }).then(res=>{console.log(res)})
+    }).then((res) => {
+      console.log(res);
+    });
   };
 
   console.log(listID);
@@ -44,6 +47,12 @@ function CreatePlaylist() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    // console.log(formData.desc.length);
+    if (formData.desc.length < 10) {
+      setDisableButton(true);
+    } else {
+      setDisableButton(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -85,7 +94,7 @@ function CreatePlaylist() {
               <input name="desc" className="bg-neutral-600 w-64 h-40 rounded" type="text" onChange={handleChange} placeholder="Add an optional description"></input>
             </div>
           </div>
-          <button className="submitPlaylist-btn text-[16px] font-medium text-primary" onClick={handleSubmit} type="submit">
+          <button className="submitPlaylist-btn text-[16px] font-medium text-primary bg-blue-300 p-2 rounded-md" onClick={handleSubmit} type="submit" disabled={disableButton}>
             Create Playlist
           </button>
         </form>
@@ -96,9 +105,13 @@ function CreatePlaylist() {
             <div className="w-24 h-24 bg-yellow-100">
               <h3>{playlist.name}</h3>
               <p>{playlist.description}</p>
-              <button onClick={()=>{
-                addItem(playlist.id)
-              }}>Submit</button>
+              <button
+                onClick={() => {
+                  addItem(playlist.id);
+                }}
+              >
+                Submit
+              </button>
             </div>
           ))}
       </div>

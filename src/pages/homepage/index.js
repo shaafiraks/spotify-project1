@@ -6,6 +6,7 @@ import { setAccessToken } from "../../reducers/AccountSlice";
 import axios from "axios";
 import { setUserProfile } from "../../reducers/UserProfileSlice";
 import { setListID } from "../../reducers/ListIDSlice";
+import durationHelper from "../../_helper/DurationHelper";
 
 function HomePage() {
   const [searchResult, setSearchResult] = useState([]);
@@ -42,9 +43,9 @@ function HomePage() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then( async(res) => {
+    }).then(async (res) => {
       const data = await res.data;
-      console.log('data, :', data);
+      console.log("data, :", data);
       dispatch(setUserProfile(data));
       // return await data
     });
@@ -58,12 +59,12 @@ function HomePage() {
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         .replace("access_token=", "");
-    console.log("test", listID)
-    if(listID){
+    console.log("test", listID);
+    if (listID) {
       dispatch(setListID(listID));
     }
     if (token) {
-      handleGetUserProfile(token)
+      handleGetUserProfile(token);
       dispatch(setAccessToken(token));
     }
   }, [listID]);
@@ -80,8 +81,8 @@ function HomePage() {
               <div className="justify-center text-white">
                 <img src={item.album.images[1].url} />
                 <p>{item.artists[0].name}</p>
-                <p>{item.album.release_date}</p>
                 <p>{item.name}</p>
+                <p>{durationHelper(item.duration_ms)}</p>
                 <button className="bg-primary w-24 rounded-full text-black" onClick={() => (listID.includes(item.id) ? deleteID(item.id) : addID(item.id))}>
                   {listID.includes(item.id) ? "Deselect" : "Select"}
                 </button>
