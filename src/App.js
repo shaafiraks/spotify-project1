@@ -14,12 +14,11 @@ export default function App() {
       <Switch>
         {/* <Route path="/">{!access_token ? <LoginPage /> : <Redirect to="/callback/" />}</Route> */}
         <Route exact path="/">
-          <LoginPage/>
+          <LoginPage />
         </Route>
         {/* <Route path="/create-playlist">{access_token ? <div>TEST</div> : <Redirect exact from="/create-playlist" to="/" />}</Route> */}
         <Route path="/callback/">
           <HomePage />
-          <div>test</div>
         </Route>
       </Switch>
     </Router>

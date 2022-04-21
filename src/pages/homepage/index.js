@@ -74,24 +74,63 @@ function HomePage() {
       <div>
         <Search handleSearch={handleSearch} />
       </div>
+      <CreatePlaylist />
       {searchResult.map((item) => {
         return (
-          <div key={item.id} className="justify-between">
-            <div className="flex min-h-screen w-full items-center justify-center bg-slate-500" key={item.id}>
-              <div className="justify-center text-white">
-                <img src={item.album.images[1].url} />
-                <p>{item.artists[0].name}</p>
-                <p>{item.name}</p>
-                <p>{durationHelper(item.duration_ms)}</p>
-                <button className="bg-primary w-24 rounded-full text-black" onClick={() => (listID.includes(item.id) ? deleteID(item.id) : addID(item.id))}>
-                  {listID.includes(item.id) ? "Deselect" : "Select"}
-                </button>
+          <section class="pt-0 lg:pt-0 pb-10 lg:pb-20 bg-[#F3F4F6]">
+            <div class="container w-full">
+              <div class="flex flex-wrap -mx-4 justify-center">
+                <div key={item.id} className="justify-between w-full md:w-1/2 xl:w-1/3 px-4">
+                  <div className="bg-black rounded-lg overflow-hidden mb-10" key={item.id}>
+                    <div className="text-center">
+                      <img class="w-full" src={item.album.images[1].url} />
+                      <div class="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
+                        <p
+                          class="
+                        font-semibold
+                        text-white text-xl
+                        sm:text-[22px]
+                        md:text-xl
+                        lg:text-[22px]
+                        xl:text-xl
+                        2xl:text-[22px]
+                        mb-4
+                        block
+                        hover:text-primary
+                        "
+                        >
+                          {item.artists[0].name}
+                        </p>
+                      </div>
+                      <p className="font-semibold text-[#919496] text-center text-body-color leading-relaxed mb-7">
+                        <p>{item.name}</p>
+                        <p>{durationHelper(item.duration_ms)}</p>
+                      </p>
+                      <button
+                        className="
+                     inline-block
+                     py-2
+                     px-7
+                     m-4
+                     border border-primary
+                     rounded-full
+                     bg-primary
+                     text-white
+                     font-medium
+                     hover:border-secondary hover:bg-secondary hover:text-white
+                     transition"
+                        onClick={() => (listID.includes(item.id) ? deleteID(item.id) : addID(item.id))}
+                      >
+                        {listID.includes(item.id) ? "Deselect" : "Select"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         );
       })}
-      <CreatePlaylist />
     </div>
   );
 }
