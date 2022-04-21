@@ -1,15 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { setAccessToken } from "../../reducers/AccountSlice";
-import { setUserProfile } from "../../reducers/UserProfileSlice";
-import { useHistory } from "react-router-dom";
+// import { useState, useEffect, useCallback } from "react";
+// import axios from "axios";
+// import { useDispatch } from "react-redux";
+// import { setAccessToken } from "../../reducers/AccountSlice";
+// import { setUserProfile } from "../../reducers/UserProfileSlice";
+// import { useHistory } from "react-router-dom";
 import React from "react";
 
 function LoginPage() {
   // const [searchResult, setSearchResult] = useState([]);
   // const setSearchValue = useSelector((state) => state.search.setSearchValue);
-  const [userProfile, setuserProfile] = useState({});
+  // const [userProfile, setuserProfile] = useState({});
 
   const CLIENT_ID = process.env.REACT_APP_SPOTIFY_API_KEY;
   const REDIRECT_URL = `http://localhost:3000/callback/`;
@@ -18,16 +18,16 @@ function LoginPage() {
   const SCOPE = "playlist-modify-private";
   const SPOTIFY_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleAccess = () => {
     window.location.href = SPOTIFY_URL;
   };
 
   return (
-    <div className="App bg-slate-600 bg-cover h-screen">
+    <div className="App bg-cover h-screen">
       <div className="Login flex justify-center justify-items-center">
         <button className="w-40 text-[white] bg-primary rounded-full" onClick={handleAccess}>
           Login With Spotify

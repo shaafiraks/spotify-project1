@@ -1,6 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import * as VscIcons from "react-icons/vsc";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { FiAlignCenter } from "react-icons/fi";
 
 function CreatePlaylist() {
   // const [access_token, listID, , , userIDProfile] = useContext(userID);
@@ -73,36 +75,46 @@ function CreatePlaylist() {
   };
 
   return (
-    <div>
+    <div className="text-center">
       <form className="" onSubmit={handleSubmit}>
-        <button className="createPlaylist-btn text-[16px] font-medium text-primary" onClick={openFormHandler}>
-          Create Playlist
-        </button>
+        <div className="flex flex-row justify-center p-2">
+          <VscIcons.VscDiffAdded
+            className="icon"
+            style={{
+              FiAlignCenter,
+            }}
+            color="white"
+            size="25px"
+          />
+          <button className="createPlaylist-btn text-[16px] font-medium text-[#CDF664]" onClick={openFormHandler}>
+            Create Playlist
+          </button>
+        </div>
       </form>
       {openForm && (
-        <form>
+        <form className="border-2 border-[#FFAFAF] rounded-md bg-[#FFAFAF] p-[2px]">
           <div>
-            <label className="title-form text-[16px] font-medium text-primary">Title</label>
+            <label className="title-form text-[16px] font-medium text-[#CDF664]">Title</label>
             <div className="">
-              <input name="name" className="bg-neutral-600 w-64 h-8 rounded" type="text" onChange={handleChange} placeholder="Add a title"></input>
+              <input name="name" className="bg-[#B8D8D8] w-64 h-8 rounded placeholder-gray-600 placeholder-opacity-75" type="text" onChange={handleChange} placeholder="Add a title"></input>
             </div>
           </div>
 
           <div>
-            <label className="desc-form text-[16px] font-medium text-primary">Description</label>
+            <label className="desc-form text-[16px] font-medium text-[#CDF664]">Description</label>
             <div className="">
-              <input name="desc" className="bg-neutral-600 w-64 h-40 rounded" type="text" onChange={handleChange} placeholder="Add an optional description"></input>
+              <input name="desc" className="bg-[#B8D8D8] w-64 h-40 rounded placeholder-gray-600 placeholder-opacity-75" type="text" onChange={handleChange} placeholder="Add an optional description"></input>
             </div>
           </div>
-          <button className="submitPlaylist-btn text-[16px] font-medium text-primary bg-blue-300 p-2 rounded-md" onClick={handleSubmit} type="submit" disabled={disableButton}>
-            Create Playlist
+          <button className="submitPlaylist-btn bg-white w-24 h-7 m-2 text-[13px] font-poppins font-medium text-[#282828] rounded-full" onClick={handleSubmit} type="submit" disabled={disableButton}>
+            SAVE
           </button>
         </form>
       )}
-      <div>
+      <div className="text-center">
         {createdPlaylist &&
           createdPlaylist.map((playlist) => (
-            <div className="w-24 h-24 bg-yellow-100">
+            <div key={playlist.id} className="w-full h-24 bg-yellow-100">
               <h3>{playlist.name}</h3>
               <p>{playlist.description}</p>
               <button

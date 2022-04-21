@@ -3,11 +3,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: "'Popp ins', sans-serif",
+        poppins: "'Poppins', sans-serif",
       },
       colors: {
-        primary: "#1BD760",
-        secondary: "#1ECB5C",
+        primary: "#FFC564",
+        secondary: "rgb(255, 180, 120)",
+        fullbg: "#A1C3D2",
       },
     },
   },

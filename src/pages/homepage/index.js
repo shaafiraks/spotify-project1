@@ -70,25 +70,30 @@ function HomePage() {
   }, [listID]);
 
   return (
-    <div>
-      <div>
-        <Search handleSearch={handleSearch} />
+    <div className="bg-fullbg h-full">
+      <div className="grid place-content-center text-center h-screen">
+        <div className="flex bg-fullbg">
+          <Search handleSearch={handleSearch} />
+        </div>
+        <div className="grid bg-fullbg">
+          <CreatePlaylist />
+        </div>
       </div>
-      <CreatePlaylist />
-      {searchResult.map((item) => {
-        return (
-          <section class="pt-0 lg:pt-0 pb-10 lg:pb-20 bg-[#F3F4F6]">
-            <div class="container w-full">
-              <div class="flex flex-wrap -mx-4 justify-center">
+      <section className="flex px-2 lg:pt-0  pb-2 lg:pb- bg-fullbg justify-center">
+        <div className="container w-full">
+          <div className="flex flex-wrap -mx-4 justify-center">
+            {searchResult.map((item) => {
+              return (
                 <div key={item.id} className="justify-between w-full md:w-1/2 xl:w-1/3 px-4">
-                  <div className="bg-black rounded-lg overflow-hidden mb-10" key={item.id}>
-                    <div className="text-center">
-                      <img class="w-full" src={item.album.images[1].url} />
-                      <div class="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
+                  <div className="bg-[#CDF664] rounded-lg overflow-hidden mb-10" key={item.id}>
+                    <div className="text-center font-poppins">
+                      <img className="w-full" src={item.album.images[1].url} />
+                      <div className="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
                         <p
-                          class="
+                          className="
                         font-semibold
-                        text-white text-xl
+                        font-poppins
+                        text-black text-xl
                         sm:text-[22px]
                         md:text-xl
                         lg:text-[22px]
@@ -102,7 +107,7 @@ function HomePage() {
                           {item.artists[0].name}
                         </p>
                       </div>
-                      <p className="font-semibold text-[#919496] text-center text-body-color leading-relaxed mb-7">
+                      <p className="font-semibold text-zinc-700 text-center text-body-color leading-relaxed mb-7">
                         <p>{item.name}</p>
                         <p>{durationHelper(item.duration_ms)}</p>
                       </p>
@@ -115,9 +120,10 @@ function HomePage() {
                      border border-primary
                      rounded-full
                      bg-primary
-                     text-white
+                     text-black
+                     font-poppins
                      font-medium
-                     hover:border-secondary hover:bg-secondary hover:text-white
+                     hover:border-secondary hover:bg-secondary hover:text-black
                      transition"
                         onClick={() => (listID.includes(item.id) ? deleteID(item.id) : addID(item.id))}
                       >
@@ -126,11 +132,11 @@ function HomePage() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        );
-      })}
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
