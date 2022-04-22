@@ -29,7 +29,7 @@ function LoginPage() {
   return (
     <div className="App bg-cover h-screen">
       <div className="Login flex justify-center justify-items-center">
-        <button className="w-40 text-[white] bg-primary rounded-full" onClick={handleAccess}>
+        <button className="w-40 text-[white] bg-black rounded-full" onClick={handleAccess}>
           Login With Spotify
         </button>
       </div>
