@@ -1,8 +1,30 @@
+# Here to Hear
+
+This is an application to create your playlist on Spotify.
+
+# Technical Requirements
+
+1. Hooks
+2. Flex & Grid
+3. Redux
+4. Eslint
+5. Testing
+6. Deploy
+
+# Additional Features
+
+1. Navigation Bar
+2. User Profile
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+### `npx create-react-app my-app`
+
+### `cd my-app`
 
 In the project directory, you can run:
 

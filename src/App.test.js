@@ -1,32 +1,41 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 import LoginPage from "./pages/login/";
-
-// test("renders learn react link", () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+import userEvent from "@testing-library/user-event";
 
 test("render tombol login", () => {
   // case untuk to be in document
 
-  // target component
+  // tentuin target component
   render(<LoginPage />);
 
-  // target case
+  // nge get button dengan tulisan login with spotify,
+  // jika ketemu, buttonText menyimpan div dari komponen.
+  // jika g ketemu, buttonText bakal undefined.
   const buttonText = screen.getByText(/Login With Spotify/i);
 
+  // nge set ekspetasi buttonText ada di dokumen, ga undefined.
   expect(buttonText).toBeInTheDocument();
+
+  // jika true, maka test passed, kalau false failed.
 });
-test("render user event", () => {
-  // case untuk to be in document
 
-  // target component
+test("user event click login", async () => {
+  // definisiin mock function, yang bertindak sebagai repository( dalam case ini, fungsi untuk login spotify)
+  const mockCallBack = jest.fn();
+
+  // tentuin target component
   render(<LoginPage />);
 
-  // target case
-  const buttonText = screen.getByText(/Login With Spotify/i);
+  // nge get button dengan tulisan login with spotify,
+  const loginButton = screen.getByText(/Login With Spotify/i);
 
-  expect(buttonText).toBeInTheDocument();
+  // nge set ekspetasi buttonText ada di dokumen, ga undefined.
+  expect(loginButton).not.toBeDisabled();
+
+  // manipulate of clicking a button
+  userEvent.click(loginButton);
+
+  // ekspeting to be clicked
+  expect(mockCallBack.mock.calls.length).toEqual(0);
 });

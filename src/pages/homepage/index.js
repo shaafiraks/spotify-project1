@@ -45,7 +45,8 @@ function HomePage() {
       },
     }).then(async (res) => {
       const data = await res.data;
-      console.log("data, :", data);
+      // console.log("data, :", data);
+      localStorage.setItem("profile", JSON.stringify(data));
       dispatch(setUserProfile(data));
       // return await data
     });
@@ -65,7 +66,9 @@ function HomePage() {
     }
     if (token) {
       handleGetUserProfile(token);
+
       dispatch(setAccessToken(token));
+      localStorage.setItem("token", token);
     }
   }, [listID]);
 
@@ -79,7 +82,7 @@ function HomePage() {
           <div className="flex bg-fullbg">
             <Search handleSearch={handleSearch} />
           </div>
-          <div className="grid bg-fullbg">
+          <div className="grid bg-fullbg mb-4">
             <CreatePlaylist />
           </div>
         </div>

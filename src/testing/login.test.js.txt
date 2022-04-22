@@ -1,0 +1,21 @@
+// test untuk setiap kondisi
+//  - login succes
+//  - login failed
+
+// test("login success", () => {
+//   render(<LoginPage />);
+
+//   const buttonText = screen.getByText(/Login With Spotify/i);
+
+//   expect(buttonText).toBeInTheDocument();
+
+// testing terhadap tampilan,
+// testing tobe in dokument
+
+// ------------------------
+//   testing untuk flow login
+// });
+
+// test("login failed");
+
+TDD
