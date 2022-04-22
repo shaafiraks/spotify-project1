@@ -12,7 +12,7 @@ function LoginPage() {
   // const [userProfile, setuserProfile] = useState({});
 
   const CLIENT_ID = process.env.REACT_APP_SPOTIFY_API_KEY;
-  const REDIRECT_URL = `https://spotify-project1-ej7nsc3w0-shaafiraks.vercel.app/callback/`;
+  const REDIRECT_URL = `https://spotify-project1-ej7nsc3w0-shaafiraks.vercel.app//callback/`;
   const RESPONSE_TYPE = "token";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const SCOPE = "playlist-modify-private";
@@ -29,7 +29,7 @@ function LoginPage() {
   return (
     <div className="App bg-cover h-screen">
       <div className="Login flex justify-center justify-items-center">
-        <button className="w-40 text-[white] bg-black rounded-full" onClick={handleAccess}>
+        <button className="w-40 text-[white] bg-primary rounded-full" onClick={handleAccess}>
           Login With Spotify
         </button>
       </div>
