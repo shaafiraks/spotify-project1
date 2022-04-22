@@ -13,17 +13,9 @@ function Search({ handleSearch }) {
 
   return (
     <IconContext.Provider value={{ color: "#fff" }}>
-      <div className="">
+      <div className="flex ">
         <input className=" w-64 h-9 bg-gray-100 rounded-full placeholder:pl-2" placeholder="Artists, songs, or podcasts" onChange={(e) => dispatch(setSearch(e.target.value))}></input>
-        <div className="flex flex-row justify-center p-2">
-          <FiIcons.FiSearch
-            className="icon"
-            style={{
-              FiAlignCenter,
-            }}
-            color="white"
-            size="25px"
-          />
+        <div className="flex justify-center p-2">
           <button
             id="search-btn"
             className="
@@ -35,7 +27,15 @@ function Search({ handleSearch }) {
               handleSearch();
             }}
           >
-            Search
+            {" "}
+            <FiIcons.FiSearch
+              className="icon"
+              style={{
+                FiAlignCenter,
+              }}
+              color="white"
+              size="25px"
+            />
           </button>
         </div>
 

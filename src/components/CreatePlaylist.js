@@ -15,7 +15,7 @@ function CreatePlaylist() {
   const [createdPlaylist, setCreatedPlaylist] = useState([]);
   const [disableButton, setDisableButton] = useState(false);
 
-  console.log(userIDProfile.id);
+  console.log(userIDProfile);
   const addItem = async (id) => {
     await axios({
       method: "POST",

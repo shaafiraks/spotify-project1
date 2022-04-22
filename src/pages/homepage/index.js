@@ -13,7 +13,6 @@ function HomePage() {
   const [searchResult, setSearchResult] = useState([]);
   const setSearchValue = useSelector((state) => state.search.setSearchValue);
   const access_token = useSelector((state) => state.account.accessToken);
-  // console.log("token", access_token);
 
   const [listID, setlistID] = useState([]);
   const dispatch = useDispatch();
@@ -71,28 +70,31 @@ function HomePage() {
   }, [listID]);
 
   return (
-    <div className="bg-fullbg h-full">
-      <NavBar />
-      <div className="grid place-content-center text-center h-screen">
-        <div className="flex bg-fullbg">
-          <Search handleSearch={handleSearch} />
+    <div className="">
+      <nav>
+        <NavBar />
+      </nav>
+      <body className="bg-fullbg min-h-screen p-8">
+        <div className="grid place-content-center justify-center bg-fullbg">
+          <div className="flex bg-fullbg">
+            <Search handleSearch={handleSearch} />
+          </div>
+          <div className="grid bg-fullbg">
+            <CreatePlaylist />
+          </div>
         </div>
-        <div className="grid bg-fullbg">
-          <CreatePlaylist />
-        </div>
-      </div>
-      <section className="flex px-2 lg:pt-0  pb-2 lg:pb- bg-fullbg justify-center">
-        <div className="container w-full">
-          <div className="flex flex-wrap -mx-4 justify-center">
-            {searchResult.map((item) => {
-              return (
-                <div key={item.id} className="justify-between w-full md:w-1/2 xl:w-1/3 px-4">
-                  <div className="bg-[#CDF664] rounded-lg overflow-hidden mb-10" key={item.id}>
-                    <div className="text-center font-poppins">
-                      <img className="w-full" src={item.album.images[1].url} />
-                      <div className="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
-                        <p
-                          className="
+        <section className="flex px-2 lg:pt-0  pb-2 lg:pb- bg-fullbg justify-center">
+          <div className="container w-full">
+            <div className="flex flex-wrap -mx-4 justify-center">
+              {searchResult.map((item) => {
+                return (
+                  <div key={item.id} className="justify-between w-full md:w-1/2 xl:w-1/3 px-4">
+                    <div className="bg-[#CDF664] rounded-lg overflow-hidden mb-10" key={item.id}>
+                      <div className="text-center font-poppins">
+                        <img className="w-full" src={item.album.images[1].url} />
+                        <div className="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
+                          <p
+                            className="
                         font-semibold
                         font-poppins
                         text-black text-xl
@@ -105,16 +107,16 @@ function HomePage() {
                         block
                         hover:text-primary
                         "
-                        >
-                          {item.artists[0].name}
+                          >
+                            {item.artists[0].name}
+                          </p>
+                        </div>
+                        <p className="font-semibold text-zinc-700 text-center text-body-color leading-relaxed mb-7">
+                          <p>{item.name}</p>
+                          <p>{durationHelper(item.duration_ms)}</p>
                         </p>
-                      </div>
-                      <p className="font-semibold text-zinc-700 text-center text-body-color leading-relaxed mb-7">
-                        <p>{item.name}</p>
-                        <p>{durationHelper(item.duration_ms)}</p>
-                      </p>
-                      <button
-                        className="
+                        <button
+                          className="
                      inline-block
                      py-2
                      px-7
@@ -127,18 +129,19 @@ function HomePage() {
                      font-medium
                      hover:border-secondary hover:bg-secondary hover:text-black
                      transition"
-                        onClick={() => (listID.includes(item.id) ? deleteID(item.id) : addID(item.id))}
-                      >
-                        {listID.includes(item.id) ? "Deselect" : "Select"}
-                      </button>
+                          onClick={() => (listID.includes(item.id) ? deleteID(item.id) : addID(item.id))}
+                        >
+                          {listID.includes(item.id) ? "Deselect" : "Select"}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </body>
     </div>
   );
 }

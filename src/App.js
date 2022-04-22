@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import PlaylistNew from "./components/PlaylistNew";
 import { useSelector } from "react-redux";
 import HomePage from "./pages/homepage";
+// import UserProfile from "./components/UserProfile";
 // import CreatePlaylistPage from "./pages/CreatePlaylistPage";
 
 export default function App() {
@@ -20,6 +21,9 @@ export default function App() {
         <Route path="/callback/">
           <HomePage />
         </Route>
+        {/* <Route path="/profile">
+          <UserProfile />
+        </Route> */}
       </Switch>
     </Router>
   );
