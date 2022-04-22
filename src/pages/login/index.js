@@ -12,7 +12,7 @@ function LoginPage() {
   // const [userProfile, setuserProfile] = useState({});
 
   const CLIENT_ID = process.env.REACT_APP_SPOTIFY_API_KEY;
-  const REDIRECT_URL = `http://localhost:3000/callback/`;
+  const REDIRECT_URL = `https://spotify-project1-ej7nsc3w0-shaafiraks.vercel.app/callback/`;
   const RESPONSE_TYPE = "token";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const SCOPE = "playlist-modify-private";
