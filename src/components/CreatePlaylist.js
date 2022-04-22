@@ -50,7 +50,7 @@ function CreatePlaylist() {
       [e.target.name]: e.target.value,
     });
     // console.log(formData.desc.length);
-    if (formData.desc.length < 10) {
+    if (formData.name.length < 10) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
@@ -86,7 +86,7 @@ function CreatePlaylist() {
             color="white"
             size="25px"
           />
-          <button className="createPlaylist-btn text-[16px] font-medium text-[#CDF664]" onClick={openFormHandler}>
+          <button className="createPlaylist-btn text-[16px] font-medium text-[#CDF664] hover:text-[rgb(210,279,150)] " onClick={openFormHandler}>
             Create Playlist
           </button>
         </div>
@@ -106,7 +106,22 @@ function CreatePlaylist() {
               <input name="desc" className="bg-[#B8D8D8] w-64 h-40 rounded placeholder-gray-600 placeholder-opacity-75" type="text" onChange={handleChange} placeholder="Add an optional description"></input>
             </div>
           </div>
-          <button className="submitPlaylist-btn bg-white w-24 h-7 m-2 text-[13px] font-poppins font-medium text-[#282828] rounded-full" onClick={handleSubmit} type="submit" disabled={disableButton}>
+          <button
+            className="
+            submitPlaylist-btn
+            bg-white 
+            w-24 h-7 m-2 text-[13px] 
+            font-poppins 
+            font-medium 
+            text-[#282828] 
+            rounded-full 
+            hover:border-slate-200 hover:bg-slate-200 hover:text-black
+            hover:shadow-lg
+            "
+            onClick={handleSubmit}
+            type="submit"
+            disabled={disableButton}
+          >
             SAVE
           </button>
         </form>

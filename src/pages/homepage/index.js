@@ -7,6 +7,7 @@ import axios from "axios";
 import { setUserProfile } from "../../reducers/UserProfileSlice";
 import { setListID } from "../../reducers/ListIDSlice";
 import durationHelper from "../../_helper/DurationHelper";
+import NavBar from "../../components/NavBar";
 
 function HomePage() {
   const [searchResult, setSearchResult] = useState([]);
@@ -71,6 +72,7 @@ function HomePage() {
 
   return (
     <div className="bg-fullbg h-full">
+      <NavBar />
       <div className="grid place-content-center text-center h-screen">
         <div className="flex bg-fullbg">
           <Search handleSearch={handleSearch} />

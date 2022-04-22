@@ -26,7 +26,11 @@ function Search({ handleSearch }) {
           />
           <button
             id="search-btn"
-            className="font-poppins font-semibold text-black"
+            className="
+            font-poppins 
+            font-semibold 
+            text-slate-800
+            hover:text-black"
             onClick={() => {
               handleSearch();
             }}

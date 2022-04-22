@@ -1,6 +1,6 @@
 import React from "react";
 import LoginPage from "./pages/login";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import PlaylistNew from "./components/PlaylistNew";
 import { useSelector } from "react-redux";
 import HomePage from "./pages/homepage";

@@ -3,7 +3,7 @@ const durationHelper = (duration) => {
   var result = 0;
   var sisabagi = 0;
   var hasil = 0;
-  var sisadetik = 0;
+
   if (duration % 60000 === 0) {
     result = duration / 60000;
   } else {
@@ -14,7 +14,6 @@ const durationHelper = (duration) => {
       hasil = sisabagi / 1000;
     } else {
       hasil = sisabagi / 1000;
-      sisadetik = sisabagi % 1000;
     }
   }
   var menit = Math.floor(result);
